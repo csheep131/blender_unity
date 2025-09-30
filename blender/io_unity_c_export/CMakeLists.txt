@@ -1,0 +1,3 @@
+# ...
+add_subdirectory(../../io/io_unity_c_export ${CMAKE_CURRENT_BINARY_DIR}/io_unity_c_export)
+target_link_libraries(bf_editor_io PRIVATE bf_io_unity_c_export)
