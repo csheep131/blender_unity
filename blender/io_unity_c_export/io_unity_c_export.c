@@ -182,18 +182,20 @@ bool UNITYC_export_scene(bContext *C, const UnityCExportParams *params)
   /* We'll count meshes on the fly; first pass to count. */
   unsigned int mesh_count = 0;
 
-  /* Count pass */
+  /* Count pass - optionally show all objects */
   FOREACH_BASE_IN_LAYER (view_layer, base) {
     Object *ob = base->object;
-    if ((base->flag & BASE_ENABLED_VIEWPORT) == 0) continue;
+    /* Skip viewport check if export_all_objects is enabled */
+    if (!params->export_all_objects && (base->flag & BASE_ENABLED_VIEWPORT) == 0) continue;
     if (ob->type == OB_MESH) mesh_count++;
   }
   write_u32(f, mesh_count);
 
-  /* Export pass */
+  /* Export pass - optionally show all objects */
   FOREACH_BASE_IN_LAYER (view_layer, base) {
     Object *ob = base->object;
-    if ((base->flag & BASE_ENABLED_VIEWPORT) == 0) continue;
+    /* Skip viewport check if export_all_objects is enabled */
+    if (!params->export_all_objects && (base->flag & BASE_ENABLED_VIEWPORT) == 0) continue;
     if (!export_one_object(f, depsgraph, ob, params)) {
       fclose(f);
       return false;

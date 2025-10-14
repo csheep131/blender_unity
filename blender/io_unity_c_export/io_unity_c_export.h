@@ -13,6 +13,7 @@ typedef struct UnityCExportParams {
   bool triangulate;
   float global_scale;
   bool unity_axes; /* Z forward, Y up */
+  bool export_all_objects; /* Export all objects, not just viewport enabled */
 } UnityCExportParams;
 
 bool UNITYC_export_scene(struct bContext *C, const UnityCExportParams *params);
