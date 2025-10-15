@@ -1,19 +1,13 @@
 /* SPDX-License-Identifier: GPL-2.0-or-later */
 #include "io_unity_c_export.h"
-
 #include "BKE_context.h"
-
 #include "RNA_access.h"
 #include "RNA_define.h"
-
 #include "WM_api.h"
 #include "WM_types.h"
-
 #include "ED_fileselect.h"
-
-#include "MEM_guardedalloc.h"
+#include "EM_guardedalloc.h"
 #include <string.h>
-
 typedef struct ExportUnityCOp {
   UnityCExportParams params;
 } ExportUnityCOp;
