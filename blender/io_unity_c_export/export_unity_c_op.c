@@ -20,6 +20,7 @@ static bool export_unity_c_exec(bContext *C, wmOperator *op)
   eu->params.triangulate     = RNA_boolean_get(op->ptr, "triangulate");
   eu->params.global_scale    = RNA_float_get(op->ptr, "global_scale");
   eu->params.unity_axes      = RNA_boolean_get(op->ptr, "unity_axes");
+  eu->params.export_all_objects = RNA_boolean_get(op->ptr, "export_all_objects");
 
   if (!UNITYC_export_scene(C, &eu->params)) {
     BKE_report(op->reports, RPT_ERROR, "Unity C export failed");
@@ -57,6 +58,7 @@ static void export_unity_c_ui(bContext *UNUSED(C), wmOperator *op)
   uiItemR(layout, op->ptr, "triangulate", 0, NULL, ICON_NONE);
   uiItemR(layout, op->ptr, "global_scale", 0, NULL, ICON_NONE);
   uiItemR(layout, op->ptr, "unity_axes", 0, NULL, ICON_NONE);
+  uiItemR(layout, op->ptr, "export_all_objects", 0, NULL, ICON_NONE);
 }
 
 void EXPORT_OT_unity_c(wmOperatorType *ot)
@@ -82,6 +84,7 @@ void EXPORT_OT_unity_c(wmOperatorType *ot)
   RNA_def_boolean(ot->srna, "triangulate", true, "Triangulate", "Force triangle export");
   RNA_def_float(ot->srna, "global_scale", 1.0f, 0.0001f, 1000.0f, "Scale", "", 0.01f, 100.0f);
   RNA_def_boolean(ot->srna, "unity_axes", true, "Unity Axes (Z Fwd, Y Up)", "Convert axes");
+  RNA_def_boolean(ot->srna, "export_all_objects", true, "Export All Objects", "Export all objects, not just viewport enabled ones");
 
   ot->ui = export_unity_c_ui;
 }
