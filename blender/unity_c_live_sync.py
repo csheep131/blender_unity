@@ -1,6 +1,6 @@
 bl_info = {
     "name": "Unity C Export – Live Sync",
-    "author": "Tom & ChatGPT",
+    "author": "Tom",
     "version": (1, 0, 0),
     "blender": (4, 0, 0),
     "location": "3D Viewport > Sidebar (N) > Unity Live",
